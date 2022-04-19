@@ -1,46 +1,17 @@
-# Getting Started with Create React App
+# Tic Tac Toe (TS/React)
+## Description
+This is the coding exercise. I completed this in 1 hr blocks across the last few days.
+I wanted to complete the game's functionality and focused most of the time on that. I styled the app very minimally.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The task: React & Typescript - Tic Tac Toe. 
 
-## Available Scripts
+The objective is to build a 2 player Tic-Tac-Toe game with React and Typescript
+- Assume that both players are playing on the same computer (the players alternate and they're using the same mouse/touchpad)
+- The Tic-Tac-Toe board is not 3x3, but NxN
+- The value of N is taken as an input from the user before the game round begins
 
-In the project directory, you can run:
+It would be great if you could focus on using Typescript well & idiomatically in the app that you're building out to give us a sense of your familiarity with TS.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## TODOS
+- css modules
+- break out components/utils
