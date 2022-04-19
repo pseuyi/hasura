@@ -13,19 +13,10 @@ type Tie = 'tie';
 type Pending = 'pending';
 type Ended = 'ended';
 
+type Status = Pending | Player | Tie | Ended;
+
+//TODO: move into utils
 const initializeBoard = (n = 9) => Array(n).fill(Marker.empty);
-
-const Outcome = ({outcome}: {outcome: Player | Tie | Ended}) => {
-  if (!outcome) return null;
-
-  if(outcome === "ended") {
-    return (<div>game over</div>);
-  }
-
-  return (
-    <div>{outcome === 'tie' ? "it's a tie!" : `the winner is ${outcome}!`}</div>
-  );
-};
 
 const getRow = (idx: number, n: number) => {
   const row = [idx];
@@ -89,12 +80,28 @@ const getDiags = (n: number): [number[], number[]] => {
   return [ltr, rtl];
 };
 
+const Outcome = ({outcome}: {outcome: Status}) => {
+  if (!outcome) return null;
+
+  const renderText = () => {
+    if (outcome === 'ended') {
+      return 'game over';
+    } else if (outcome === 'tie') {
+      return "it's a tie!";
+    } else {
+      return `the winner is ${outcome}!`;
+    }
+  };
+
+  return <div className="outcome">{renderText()}</div>;
+};
+
 function App() {
   const [n, setN] = useState<number | undefined>();
   const [formN, setFormN] = useState<number | undefined>();
   const [board, setBoard] = useState<Board>(initializeBoard());
   const [currentPlayer, setCurrentPlayer] = useState<Player>(Marker.empty);
-  const [status, setStatus] = useState<Pending | Player | Tie | Ended>(Marker.empty);
+  const [status, setStatus] = useState<Status>(Marker.empty);
 
   const checkOutcome = (board: Board, move: number): Player | Tie | void => {
     if (!n) return;
@@ -138,7 +145,7 @@ function App() {
   const handleEndGame = () => {
     setCurrentPlayer(Marker.empty);
     setStatus('ended');
-  }
+  };
 
   const handleClick = (e: React.SyntheticEvent, idx: number) => {
     // update board
@@ -170,17 +177,24 @@ function App() {
   const gameOver = status !== 'pending';
   return (
     <div className="App">
-      <header>tic tac toe</header>
+      <header className="header">tic tac toe</header>
       {!n || gameOver ? (
-        <>
+        <div className="dimension">
           <label>choose board dimension:</label>
-          <input type="number" min={1} onChange={handleNChange} />
+          <input
+            className="dimension-input"
+            type="number"
+            min={1}
+            onChange={handleNChange}
+          />
           <button disabled={!formN} onClick={handleNewGame}>
             new game
           </button>
-        </>
+        </div>
       ) : null}
-      {currentPlayer ? <div>{`current player: ${currentPlayer}`}</div> : null}
+      {currentPlayer ? (
+        <div className="turn">{`current player: ${currentPlayer}`}</div>
+      ) : null}
       {n ? (
         <div
           className="board"
@@ -191,14 +205,12 @@ function App() {
           }}>
           {board.map((cell, idx) => (
             <div className="cell" key={idx} onClick={e => handleClick(e, idx)}>
-              {cell}
+              <span className={cell === Marker.x ? 'x' : 'o'}>{cell}</span>
             </div>
           ))}
         </div>
       ) : null}
-      {gameStarted ? (
-        <button onClick={handleEndGame}>end game</button>
-      ) : null}
+      {gameStarted ? <button onClick={handleEndGame}>end game</button> : null}
       {gameOver ? <Outcome outcome={status} /> : null}
     </div>
   );
