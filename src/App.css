@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.board {
+  margin: auto;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell {
+  border: 1px solid black;
+  height: 2rem;
+  width: 2rem;
+}
